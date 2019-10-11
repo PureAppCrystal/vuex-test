@@ -1,19 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    Partner counter: {{ parentCounter }}<br>
+
+    <button @click="addCounter">+</button>
+    <button @click="subCounter">-</button>
+
+    <!-- Child 등록후 counter 데이터 속성을 props로 전달한다. -->
+    <Child/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Child from './components/Child.vue'
+import {  mapGetters, mapMutations, mapActions} from 'vuex'
 
 export default {
-  name: 'app',
+  methods: {
+    ...mapMutations({
+      //addCounter: 'addCounter' ,
+      subCounter: 'subCounter'
+
+    }),
+
+    ...mapActions({
+      addCounter: 'addCounter'
+    })
+  },
+  computed: {
+    ...mapGetters({
+      parentCounter: 'getCounter'
+    })
+  },
   components: {
-    HelloWorld
+    Child,
   }
 }
+
+
 </script>
 
 <style>
