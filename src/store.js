@@ -23,8 +23,11 @@ export const store = new Vuex.Store({
         }
     },
     actions: {
-        addCounter(context) {
-            return context.commit('addCounter');
+        // addCounter(context) {
+        //     return context.commit('addCounter');
+        // 비구조할당 
+        addCounter({commit}) {
+            return commit('addCounter');
         }
     }
 })
